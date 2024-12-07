@@ -4,7 +4,7 @@ _Adapted from [AloofSage/Cloudflare-DDNS](https://github.com/AloofSage/Cloudflar
 
 Use the same script setup precedure as outlined in AloofSage's ReadMe
 
-NOTE: that you will need to modify this to update the server properties file and restart your server for port changes to be registered by the server.
+NOTE: there are some parameters you need to modify (read the powershell script in a text editor)
 
 ## License
 
