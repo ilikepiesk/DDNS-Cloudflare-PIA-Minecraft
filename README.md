@@ -4,7 +4,7 @@ _Adapted from [AloofSage/Cloudflare-DDNS](https://github.com/AloofSage/Cloudflar
 
 Use the same script setup precedure as outlined in AloofSage's ReadMe
 
-NOTE: there are some parameters you need to modify (read the powershell script in a text editor)
+NOTE: there are some parameters you need to modify/beaware of some behaviour (read the powershell script in a text editor)
 
 ## License
 
