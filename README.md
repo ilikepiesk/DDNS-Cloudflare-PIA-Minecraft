@@ -2,6 +2,8 @@
 
 _Adapted from [AloofSage/Cloudflare-DDNS](https://github.com/AloofSage/Cloudflare-DDNS)_
 
+NOTE: that you will need to modify this to update the server properties file and restart your server for port changes to be registered by the server.
+
 ## License
 
 ### MIT License
