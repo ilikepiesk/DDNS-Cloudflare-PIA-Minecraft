@@ -16,7 +16,10 @@ $zone_api_token = "REPLACE BEFORE RUNNING"
 $base_url = $api_base_url -f $zone_id
 $headers = $cloudflare_headers.Clone()
 $headers.Authorization = $headers.Authorization -f $zone_api_token
+
+##************************************************************************
 ## REPLACE ALL THE subdomain.domain.tld FIELDS TO WHATEVER YOU ARE USING
+##************************************************************************
 
 ## pulling cloudflare records for Type A ipv4 address
 $list_records_request = @{
@@ -27,6 +30,7 @@ $response = Invoke-RestMethod @list_records_request
 $cloudflareip = $response.result.content
 Write-Log "Cloudflare IP: $cloudflareip"
 $record_id = $response.result[0].id
+## repoint this to a different path if not installed at default location
 $vpnip = & "C:\Program Files\Private Internet Access\piactl.exe" get vpnip
 Write-Log "VPN IP: $vpnip"
 if ($cloudflareip -ne $vpnip){
@@ -63,6 +67,7 @@ $response2 = Invoke-RestMethod @list_records_request
 $cloudflareport = $response2.result.data.port
 Write-Log "Cloudflare Port: $cloudflareport"
 $record_id2 = $response2.result[0].id
+## repoint this to a different path if not installed at default location
 $vpnport = & "C:\Program Files\Private Internet Access\piactl.exe" get portforward
 Write-Log "VPN Port: $vpnport" 
 if ($cloudflareport -ne $vpnport) {
