@@ -2,9 +2,12 @@
 
 _Adapted from [AloofSage/Cloudflare-DDNS](https://github.com/AloofSage/Cloudflare-DDNS)_
 
+This script will update your ipv4 wan ip from pia to your cloudflare A record and update your forwarded port from pia to your SRV record
+Furthermore, it will setup a network port redirect so you can keep/use whatever port you want and not have to restart the server when the port changes.
+
 Use the same script setup precedure as outlined in AloofSage's ReadMe
 
-NOTE: there are some parameters you need to modify/beaware of some behaviour (read the powershell script in a text editor)
+NOTE: there are some parameters you need to modify/be aware of some behaviour (read the powershell script in a text editor)
 
 ## License
 
