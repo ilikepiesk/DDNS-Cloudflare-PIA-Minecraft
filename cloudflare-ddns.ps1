@@ -88,12 +88,18 @@ if ($cloudflareport -ne $vpnport) {
     $update_response2 = Invoke-RestMethod @cloudflare_request
 	if ($update_response2.success){
 		Write-Log "Port Updated to $vpnport"
-		## assuming you're using wireguard if not then you need to figure out what the network adapter would be named
-	        $localipv4 = (-split (netsh interface ip show config name="wgpia" | findstr "IP Address"))[2]
-	 	## this is setting up local port redirects which wont actually work unless you have windows network firewall allows
-		netsh interface portproxy delete v4tov4 listenport=$cloudflareport listenaddress=$localipv4
-		netsh interface portproxy add v4tov4 listenport=$vpnport listenaddress=$localipv4 connectport=25565 connectaddress=localhost
 	}
 } else {
 	Write-Log "Port Not Updated"
+}
+## if the vpn ip changed then the ipv4 needs to be updated and if the port changed then that also needs to be updated
+if ($update_response.success -or $update_response2.success){
+	## this assumes you're using wireguard and if not you need to find what the network adapter name is
+	$localipv4 = (-split (netsh interface ip show config name="wgpia" | findstr "IP Address"))[2]
+ 	## this assumes you only have one portproxy and its for this redirect if not you need to use fancier expressions to find the correct entry to delete
+	$existingipv4 = (-split (netsh interface portproxy show all))[16]
+ 	## deleting old portproxy entry
+	netsh interface portproxy delete v4tov4 listenport=$cloudflareport listenaddress=$existingipv4
+ 
+	netsh interface portproxy add v4tov4 listenport=$vpnport listenaddress=$localipv4 connectport=25565 connectaddress=localhost
 }
