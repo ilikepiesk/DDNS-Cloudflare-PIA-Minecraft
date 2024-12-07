@@ -18,7 +18,7 @@ $headers = $cloudflare_headers.Clone()
 $headers.Authorization = $headers.Authorization -f $zone_api_token
 ## REPLACE ALL THE subdomain.domain.tld FIELDS TO WHATEVER YOU ARE USING
 
-## pulling cloudflare records for Type A port
+## pulling cloudflare records for Type A ipv4 address
 $list_records_request = @{
         Uri     = "$base_url/dns_records?name=$("subdomain.domain.tld")&type=A"
         Headers = $headers
